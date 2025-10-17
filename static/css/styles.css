@@ -2,8 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
 :root {
-    --color-primario: #0056b3; /* Un azul más oscuro y profesional */
-    --color-acento: #28a745;   /* Verde para acciones importantes */
+    --color-primario: #0056b3; 
+    --color-acento: #28a745;  
     --color-fondo: #f8f9fa;
     --color-superficie: #ffffff;
     --color-texto: #212529;
@@ -27,7 +27,7 @@ body {
 
 /* === 2. BARRA LATERAL (SIDEBAR) === */
 .sidebar {
-    flex: 0 0 280px; /* Un poco más ancha */
+    flex: 0 0 280px;
     background-color: var(--color-superficie);
     border-right: 1px solid #dee2e6;
     padding: 2.5rem;
@@ -183,7 +183,7 @@ body {
 .card img, .sin-imagen {
     width: 100%;
     height: 200px;
-    object-fit: contain; /* Para que la imagen se vea completa */
+    object-fit: contain;
     background-color: var(--color-superficie);
     padding: 10px;
     box-sizing: border-box;
@@ -201,7 +201,7 @@ body {
     margin: 0 0 0.5rem 0;
     font-size: 1.1rem;
     font-weight: 600;
-    flex-grow: 1; /* Empuja el precio hacia abajo */
+    flex-grow: 1; 
 }
 
 .card p {
