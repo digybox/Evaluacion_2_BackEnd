@@ -1,0 +1,339 @@
+/* === 1. CONFIGURACIÓN GENERAL Y NUEVA FUENTE === */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root {
+    --color-primario: #0056b3; /* Un azul más oscuro y profesional */
+    --color-acento: #28a745;   /* Verde para acciones importantes */
+    --color-fondo: #f8f9fa;
+    --color-superficie: #ffffff;
+    --color-texto: #212529;
+    --color-texto-secundario: #6c757d;
+    --sombra-tarjeta: 0 8px 25px rgba(0, 0, 0, 0.08);
+    --sombra-tarjeta-hover: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+}
+
+.page-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* === 2. BARRA LATERAL (SIDEBAR) === */
+.sidebar {
+    flex: 0 0 280px; /* Un poco más ancha */
+    background-color: var(--color-superficie);
+    border-right: 1px solid #dee2e6;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo a {
+    font-size: 2.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    /* Efecto de gradiente en el texto */
+    background: linear-gradient(45deg, #007bff, var(--color-primario));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+.search-form {
+    margin-top: 2rem;
+    display: flex;
+}
+.search-form input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px 0 0 8px;
+    border-right: none;
+    transition: border-color 0.3s;
+}
+.search-form input:focus {
+    outline: none;
+    border-color: var(--color-primario);
+}
+.search-form button {
+    padding: 10px 15px;
+    border: none;
+    background-color: var(--color-primario);
+    color: white;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.search-form button:hover {
+    background-color: #004494;
+}
+
+.sidebar-nav h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--color-texto-secundario);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.5px;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav li a {
+    display: block;
+    padding: 12px 18px;
+    text-decoration: none;
+    color: #495057;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+}
+
+.sidebar-nav li a:hover {
+    background-color: var(--color-primario);
+    color: white;
+    transform: translateX(5px);
+}
+
+
+/* === 3. CONTENIDO PRINCIPAL Y FOOTER === */
+.content-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1;
+    padding: 2.5rem 4rem;
+}
+
+.category-section h2, h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    border-bottom: 3px solid var(--color-primario);
+    padding-bottom: 10px;
+    margin-bottom: 2rem;
+}
+
+.main-footer {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--color-superficie);
+    border-top: 1px solid #dee2e6;
+    color: var(--color-texto-secundario);
+    font-size: 0.9rem;
+}
+.main-footer p {
+    margin: 5px 0;
+}
+
+
+/* === 4. TARJETAS DE PRODUCTO CON ANIMACIÓN === */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    background-color: var(--color-superficie);
+    border-radius: 16px;
+    box-shadow: var(--sombra-tarjeta);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: fadeIn 0.5s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--sombra-tarjeta-hover);
+}
+
+.card a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.card img, .sin-imagen {
+    width: 100%;
+    height: 200px;
+    object-fit: contain; /* Para que la imagen se vea completa */
+    background-color: var(--color-superficie);
+    padding: 10px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #eee;
+}
+
+.card-content {
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    flex-grow: 1; /* Empuja el precio hacia abajo */
+}
+
+.card p {
+    margin: 0.2rem 0;
+    color: var(--color-texto-secundario);
+    font-size: 0.9rem;
+}
+
+.card p b {
+    color: var(--color-primario); /* Resalta el precio */
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+
+/* === 5. PÁGINA DE DETALLE DE PRODUCTO === */
+.detalle-producto-container {
+    display: flex;
+    gap: 3rem;
+    background: var(--color-superficie);
+    padding: 3rem;
+    border-radius: 16px;
+    box-shadow: var(--sombra-tarjeta);
+}
+.detalle-imagen {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.detalle-imagen img, .sin-imagen-detalle {
+    max-width: 100%;
+    border-radius: 12px;
+    background-color: var(--color-fondo);
+}
+.detalle-info {
+    flex: 1;
+}
+.detalle-info h1 {
+    margin-top: 0;
+}
+.detalle-precio {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-primario);
+    margin: 1rem 0;
+}
+.en-stock { color: var(--color-acento); font-weight: 600; }
+.sin-stock { color: #dc3545; font-weight: 600; }
+
+.btn-comprar {
+    margin-top: 2rem;
+    padding: 16px 32px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background-color: var(--color-acento);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+.btn-comprar:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+/* === ESTILOS PARA EL CARRITO DE COMPRAS === */
+
+.cart-link {
+    display: block;
+    margin-top: 2rem;
+    padding: 15px;
+    background-color: var(--color-acento);
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+.cart-link:hover {
+    background-color: #218838;
+}
+
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+}
+.cart-table th, .cart-table td {
+    border-bottom: 1px solid #dee2e6;
+    padding: 1rem;
+    text-align: left;
+    vertical-align: middle;
+}
+.cart-table th {
+    font-weight: 600;
+    color: var(--color-texto-secundario);
+}
+.cart-item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+.total-row {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+.total-row td {
+    border-top: 2px solid var(--color-primario);
+}
+.btn-remove {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.cart-actions {
+    text-align: right;
+}
+.btn-checkout {
+    padding: 16px 32px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background-color: var(--color-primario);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+}

@@ -1,0 +1,31 @@
+{% extends 'catalogo/base.html' %}
+
+{% block content %}
+  {% if query %}
+    <h1>Resultados para "{{ query }}"</h1>
+    {% if productos %}
+      <div class="grid">
+        {% for p in productos %}
+          <div class="card">
+            <a href="{% url 'catalogo:detalle' p.id %}">
+              {% if p.imagen %}
+                <img src="{{ p.imagen.url }}" alt="{{ p.nombre }}">
+              {% else %}
+                <div class="sin-imagen">Sin imagen</div>
+              {% endif %}
+            </a>
+            <div class="card-content">
+              <h3>{{ p.nombre }}</h3>
+              <p><b>Precio:</b> ${{ p.precio }}</p>
+              <p><b>Stock:</b> {{ p.stock }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p>No se encontraron productos que coincidan con tu búsqueda.</p>
+    {% endif %}
+  {% else %}
+    <h1>Por favor, ingresa un término de búsqueda.</h1>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'catalogo/base.html' %}
+
+{% block content %}
+<h1>Categoría: {{ categoria.nombre }}</h1>
+
+<a href="{% url 'catalogo:index' %}">Volver a todos los productos</a>
+
+<hr>
+
+<div class="grid">
+  {% for p in productos %}
+  <div class="card">
+    <a href="{% url 'catalogo:detalle' p.id %}">
+      {% if p.imagen %}
+        <img src="{{ p.imagen.url }}" alt="{{ p.nombre }}" style="max-width:200px;">
+      {% else %}
+        <div style="width:200px;height:150px;background:#eee;display:flex;align-items:center;justify-content:center;">Sin imagen</div>
+      {% endif %}
+      <h3>{{ p.nombre }}</h3>
+    </a>
+    <p>Precio: ${{ p.precio }}</p>
+    <p>Stock: {{ p.stock }}</p>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

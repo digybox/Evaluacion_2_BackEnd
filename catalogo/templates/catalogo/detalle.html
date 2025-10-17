@@ -1,0 +1,32 @@
+{% extends 'catalogo/base.html' %}
+
+{% block content %}
+  <div class="detalle-producto-container">
+    <div class="detalle-imagen">
+      {% if producto.imagen %}
+        <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+      {% else %}
+        <div class="sin-imagen-detalle">Sin imagen</div>
+      {% endif %}
+    </div>
+    <div class="detalle-info">
+      <h1>{{ producto.nombre }}</h1>
+      <p class="detalle-categoria">Categoría: <a href="{% url 'catalogo:categoria' producto.categoria.id %}">{{ producto.categoria.nombre }}</a></p>
+      <p class="detalle-precio">${{ producto.precio }}</p>
+      <p class="detalle-stock">
+        {% if producto.stock > 0 %}
+          <span class="en-stock">En Stock ({{ producto.stock }} disponibles)</span>
+        {% else %}
+          <span class="sin-stock">Agotado</span>
+        {% endif %}
+      </p>
+      <p class="detalle-descripcion">{{ producto.descripcion }}</p>
+      
+      <form action="{% url 'cart:add_to_cart' producto.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn-comprar">Añadir al Carrito</button>
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

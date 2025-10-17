@@ -1,0 +1,41 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Digibox - Tienda de Periféricos</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+  <div class="page-container">
+    <aside class="sidebar">
+      <h1 class="logo">
+        <a href="{% url 'catalogo:index' %}">Digibox</a>
+      </h1>
+      <form action="{% url 'catalogo:buscar' %}" method="get" class="search-form">
+        <input type="text" name="q" placeholder="Buscar productos...">
+        <button type="submit">Buscar</button>
+      </form>
+      <nav class="sidebar-nav">
+        <h3>Categorías</h3>
+        <ul>
+          {% for cat in categorias %}
+            <li><a href="{% url 'catalogo:categoria' cat.id %}">{{ cat.nombre }}</a></li>
+          {% endfor %}
+        </ul>
+        <a href="{% url 'cart:cart_detail' %}" class="cart-link">
+          Ver Carrito ({{ cart|length }})
+        </a>
+      </nav>
+    </aside>
+    <div class="content-wrapper">
+      <main class="main-content">
+        {% block content %}{% endblock %}
+      </main>
+      <footer class="main-footer">
+        <p>&copy; 2025 Digibox. Todos los derechos reservados.</p>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>

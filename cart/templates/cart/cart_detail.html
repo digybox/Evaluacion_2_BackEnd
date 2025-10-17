@@ -1,0 +1,53 @@
+{% extends 'catalogo/base.html' %}
+{% load static %}
+
+{% block content %}
+  <h1>Tu Carrito de Compras</h1>
+  {% if cart %}
+    <table class="cart-table">
+      <thead>
+        <tr>
+          <th>Imagen</th>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th>Precio Unitario</th>
+          <th>Precio Total</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in cart %}
+          <tr>
+            <td>
+              <a href="#"> {% if item.product.imagen %}
+                  <img src="{{ item.product.imagen.url }}" class="cart-item-image">
+                {% else %}
+                  <div class="sin-imagen-tabla">Sin Imagen</div>
+                {% endif %}
+              </a>
+            </td>
+            <td>{{ item.product.nombre }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>${{ item.price }}</td>
+            <td>${{ item.total_price }}</td>
+            <td>
+              <form action="{% url 'cart:remove_from_cart' item.product.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn-remove">Eliminar</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+        <tr class="total-row">
+          <td colspan="4">Total</td>
+          <td colspan="2">${{ cart.get_total_price }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="cart-actions">
+        <a href="#" class="btn-checkout">Proceder al Pago (Simulado)</a>
+    </div>
+  {% else %}
+    <p>Tu carrito está vacío. <a href="{% url 'catalogo:index' %}">Sigue comprando</a>.</p>
+  {% endif %}
+{% endblock %}
